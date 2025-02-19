@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños, My Baby</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card {
+            background: url('https://www.transparenttextures.com/patterns/paper.png'), white;
+            background-size: 100%;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideIn 2s 1s forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-family: 'Pacifico', cursive;
+            color: #e60073;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .heart {
+            color: #e60073;
+            font-size: 30px;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .message {
+            font-family: 'Pacifico', cursive;
+            font-size: 18px;
+            color: #d63384;
+            text-align: left;
+            line-height: 1.6;
+            overflow: hidden;
+            display: inline-block;
+            white-space: pre-line;
+        }
+        .signature {
+            font-size: 16px;
+            color: #d63384;
+            margin-top: 15px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .image-container {
+            display: none;
+            opacity: 0;
+            animation: fadeInImage 2s forwards;
+        }
+        @keyframes fadeInImage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        img {
+            max-width: 100%;
+            border-radius: 20px;
+            animation: zoomIn 2s forwards;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .final-message {
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: #e60073;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Feliz Cumpleaños, My Baby <span class="heart">❤</span></h2>
+        <p class="message"></p>
+        <p class="signature"></p>
+        <div class="image-container">
+            <img src="https://img.freepik.com/vector-premium/feliz-cumpleanos-letras_592709-126.jpg?w=1380" alt="Primera Foto">
+            <p class="final-message">Feliz Cumpleaños, mi bebé te amo mucho mucho mucho. 💖</p>
+        </div>
+    </div>
+
+    <script>
+        const text = `Mi bebé hermosa, 💖
+    
+        Hoy es **7 de marzo**, un día que cambió mi vida para siempre. Porque hace 16 años, nació la persona que hace que mi mundo tenga sentido… TÚ. 😘
+    
+        No sé cómo, pero cada día a tu lado me siento más afortunado. Tu risa, tu mirada, tu todo... eres lo que siempre soñé. 🌙
+    
+        **Feliz cumpleaños, mi bombón.** Este día es solo para ti, pero quiero que sepas que mi vida, cada segundo, es un regalo gracias a ti. 💖`;
+    
+        let index = 0;
+        function typeWriter() {
+            if (index < text.length) {
+                document.querySelector(".message").innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeWriter, 120);
+            } else {
+                setTimeout(() => {
+                    document.querySelector(".signature").innerHTML = "Firmado por: Tu bebe Alex :)";
+                    setTimeout(() => {
+                        document.querySelector(".message").style.animation = "fadeOut 1s forwards";
+                        document.querySelector(".signature").style.animation = "fadeOut 1s forwards";
+                        setTimeout(() => {
+                            document.querySelector(".message").style.display = "none";
+                            document.querySelector(".signature").style.display = "none";
+                            document.querySelector(".image-container").style.display = "block";
+                            document.querySelector(".image-container").style.opacity = "1";
+                        }, 1000);
+                    }, 2000);
+                }, 1000);
+            }
+        }
+        typeWriter();
+    </script>
+    
+</body>
+</html>
