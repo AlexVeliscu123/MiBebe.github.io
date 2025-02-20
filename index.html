@@ -100,6 +100,34 @@
             opacity: 0;
             animation: fadeIn 2s 2s forwards;
         }
+        .instagram-message {
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: #e60073;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            display: none;
+        }
+        .erase-effect {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: erase 2s steps(40, end) forwards;
+        }
+        @keyframes erase {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+        .final-signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: #e60073;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +139,8 @@
             <img src="https://img.freepik.com/vector-premium/feliz-cumpleanos-letras_592709-126.jpg?w=1380" alt="Primera Foto">
             <p class="final-message">Feliz Cumpleaños, mi bebé te amo mucho mucho mucho. 💖</p>
         </div>
+        <p class="instagram-message">Dime en Instagram que nota le darías a esta carta baby :)</p>
+        <p class="final-signature">Hecho por tu bebe 💖💖💖</p>
     </div>
 
     <script>
@@ -139,6 +169,23 @@
                             document.querySelector(".signature").style.display = "none";
                             document.querySelector(".image-container").style.display = "block";
                             document.querySelector(".image-container").style.opacity = "1";
+                            setTimeout(() => {
+                                document.querySelector(".image-container").style.animation = "fadeOut 1s forwards";
+                                setTimeout(() => {
+                                    document.querySelector(".image-container").style.display = "none";
+                                    document.querySelector(".instagram-message").style.display = "block";
+                                    document.querySelector(".instagram-message").style.opacity = "1";
+                                    setTimeout(() => {
+                                        // Aplicar efecto de borrado
+                                        document.querySelector(".instagram-message").classList.add("erase-effect");
+                                        setTimeout(() => {
+                                            document.querySelector(".instagram-message").style.display = "none";
+                                            document.querySelector(".final-signature").style.display = "block";
+                                            document.querySelector(".final-signature").style.opacity = "1";
+                                        }, 2000); // Duración del efecto de borrado
+                                    }, 3000); // Tiempo antes de empezar a borrar
+                                }, 1000);
+                            }, 5000); // Tiempo que la imagen y la frase inicial están visibles
                         }, 1000);
                     }, 2000);
                 }, 1000);
