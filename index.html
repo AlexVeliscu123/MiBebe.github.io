@@ -6,11 +6,13 @@
     <title>Feliz Cumpleaños, My Baby</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* Estilos generales */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            margin: 0;
             background: linear-gradient(to right, #ff758c, #ff7eb3);
             font-family: 'Open Sans', sans-serif;
             text-align: center;
@@ -18,44 +20,56 @@
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Estilos de la tarjeta */
         .card {
             background: url('https://www.transparenttextures.com/patterns/paper.png'), white;
             background-size: 100%;
-            padding: 30px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
-            max-width: 450px;
+            max-width: 90%;
+            width: 100%;
             position: relative;
             opacity: 0;
             transform: translateY(-20px);
             animation: slideIn 2s 1s forwards;
         }
+
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Estilos del título */
         h2 {
             font-family: 'Pacifico', cursive;
             color: #e60073;
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 15px;
         }
+
+        /* Estilos del corazón animado */
         .heart {
             color: #e60073;
             font-size: 30px;
             animation: heartbeat 1.5s infinite;
         }
+
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
+
+        /* Estilos del mensaje */
         .message {
             font-family: 'Pacifico', cursive;
-            font-size: 18px;
+            font-size: 16px;
             color: #d63384;
             text-align: left;
             line-height: 1.6;
@@ -63,65 +77,88 @@
             display: inline-block;
             white-space: pre-line;
         }
+
+        /* Estilos de la firma */
         .signature {
-            font-size: 16px;
+            font-size: 14px;
             color: #d63384;
             margin-top: 15px;
             opacity: 0;
             animation: fadeIn 2s forwards;
         }
+
+        /* Estilos del contenedor de la imagen */
         .image-container {
             display: none;
             opacity: 0;
             animation: fadeInImage 2s forwards;
         }
+
         @keyframes fadeInImage {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
         img {
             max-width: 100%;
             border-radius: 20px;
             animation: zoomIn 2s forwards;
         }
+
         @keyframes zoomIn {
             from { transform: scale(0); }
             to { transform: scale(1); }
         }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
+
+        /* Estilos del mensaje final */
         .final-message {
             font-family: 'Pacifico', cursive;
-            font-size: 24px;
+            font-size: 20px;
             color: #e60073;
             margin-top: 20px;
             opacity: 0;
             animation: fadeIn 2s 2s forwards;
         }
+
+        /* Estilos del mensaje de Instagram */
         .instagram-message {
             font-family: 'Pacifico', cursive;
-            font-size: 24px;
+            font-size: 20px;
             color: #e60073;
             margin-top: 20px;
             opacity: 0;
             animation: fadeIn 2s forwards;
             display: none;
         }
+
+        /* Efecto de borrado */
         .erase-effect {
             display: inline-block;
             overflow: hidden;
             white-space: nowrap;
             animation: erase 2s steps(40, end) forwards;
         }
+
         @keyframes erase {
             from { width: 100%; }
             to { width: 0%; }
         }
+
+        /* Estilos de la firma final */
         .final-signature {
             font-family: 'Pacifico', cursive;
-            font-size: 24px;
+            font-size: 20px;
+            color: #e60073;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            display: none;
+        }
+
+        /* Estilos del nuevo mensaje */
+        .new-message {
+            font-family: 'Pacifico', cursive;
+            font-size: 20px;
             color: #e60073;
             margin-top: 20px;
             opacity: 0;
@@ -141,6 +178,7 @@
         </div>
         <p class="instagram-message">Dime en Instagram que nota le darías a esta carta baby :)</p>
         <p class="final-signature">Hecho por tu bebe 💖💖💖</p>
+        <p class="new-message">gracias por confiar en mi te quiero mucho mucho mucho 💖</p>
     </div>
 
     <script>
@@ -182,6 +220,15 @@
                                             document.querySelector(".instagram-message").style.display = "none";
                                             document.querySelector(".final-signature").style.display = "block";
                                             document.querySelector(".final-signature").style.opacity = "1";
+                                            setTimeout(() => {
+                                                // Aplicar efecto de borrado a "Hecho por tu bebe"
+                                                document.querySelector(".final-signature").classList.add("erase-effect");
+                                                setTimeout(() => {
+                                                    document.querySelector(".final-signature").style.display = "none";
+                                                    document.querySelector(".new-message").style.display = "block";
+                                                    document.querySelector(".new-message").style.opacity = "1";
+                                                }, 2000); // Duración del efecto de borrado
+                                            }, 2000); // Tiempo antes de empezar a borrar
                                         }, 2000); // Duración del efecto de borrado
                                     }, 3000); // Tiempo antes de empezar a borrar
                                 }, 1000);
@@ -193,6 +240,5 @@
         }
         typeWriter();
     </script>
-    
 </body>
 </html>
